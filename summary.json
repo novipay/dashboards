@@ -26,7 +26,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 9901,
   "graphTooltip": 0,
-  "id": 6,
+  "id": 11,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -349,7 +349,8 @@
             "type": "prometheus",
             "uid": "f3dc242d-0b16-48d5-99e9-8f429ee8134b"
           },
-          "expr": "avg_over_time(node_memory_MemTotal{instance=~'$node'}[10m]) - (avg_over_time(node_memory_MemFree{instance=~'$node'}[10m]) + avg_over_time(node_memory_Cached{instance=~'$node'}[10m]) + avg_over_time(node_memory_Buffers{instance=~'$node'}[10m]))",
+          "editorMode": "code",
+          "expr": "avg_over_time(node_memory_MemTotal_bytes{instance=~'$node'}[10m]) - (avg_over_time(node_memory_MemFree_bytes{instance=~'$node'}[10m]) + avg_over_time(node_memory_Cached_bytes{instance=~'$node'}[10m]) + avg_over_time(node_memory_Buffers_bytes{instance=~'$node'}[10m]))",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 4,
@@ -361,7 +362,8 @@
             "type": "prometheus",
             "uid": "f3dc242d-0b16-48d5-99e9-8f429ee8134b"
           },
-          "expr": "avg_over_time(node_memory_MemFree{instance=~'$node'}[10m]) + avg_over_time(node_memory_Cached{instance=~'$node'}[10m]) + avg_over_time(node_memory_Buffers{instance=~'$node'}[10m])",
+          "editorMode": "code",
+          "expr": "avg_over_time(node_memory_MemFree_bytes{instance=~'$node'}[10m]) + avg_over_time(node_memory_Cached_bytes{instance=~'$node'}[10m]) + avg_over_time(node_memory_Buffers_bytes{instance=~'$node'}[10m])",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 4,
@@ -773,19 +775,19 @@
           "text": [
             "ct-arm-1",
             "ct-master-1",
-            "ct-monitoring-1"
+            "ct-novitus-1"
           ],
           "value": [
             "ct-arm-1",
             "ct-master-1",
-            "ct-monitoring-1"
+            "ct-novitus-1"
           ]
         },
         "datasource": {
           "type": "prometheus",
           "uid": "f3dc242d-0b16-48d5-99e9-8f429ee8134b"
         },
-        "definition": "label_values(node_uname_info{job=\"node-exporter\"}, instance)",
+        "definition": "label_values(node_uname_info, instance)",
         "hide": 0,
         "includeAll": false,
         "label": "",
@@ -794,7 +796,7 @@
         "name": "node",
         "options": [],
         "query": {
-          "query": "label_values(node_uname_info{job=\"node-exporter\"}, instance)",
+          "query": "label_values(node_uname_info, instance)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -809,7 +811,7 @@
     ]
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -841,6 +843,6 @@
   "timezone": "browser",
   "title": "Node Exporter Server Metrics - Summary",
   "uid": "L10lV1Xik",
-  "version": 15,
+  "version": 87,
   "weekStart": ""
 }
