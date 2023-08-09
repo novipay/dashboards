@@ -26,7 +26,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 9901,
   "graphTooltip": 0,
-  "id": 11,
+  "id": 13,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -39,7 +39,7 @@
       "error": false,
       "gridPos": {
         "h": 1,
-        "w": 8,
+        "w": 12,
         "x": 0,
         "y": 0
       },
@@ -81,7 +81,7 @@
       "grid": {},
       "gridPos": {
         "h": 5,
-        "w": 8,
+        "w": 12,
         "x": 0,
         "y": 1
       },
@@ -300,7 +300,7 @@
       "grid": {},
       "gridPos": {
         "h": 4,
-        "w": 8,
+        "w": 12,
         "x": 0,
         "y": 6
       },
@@ -421,7 +421,7 @@
       "grid": {},
       "gridPos": {
         "h": 4,
-        "w": 8,
+        "w": 12,
         "x": 0,
         "y": 10
       },
@@ -519,7 +519,7 @@
       "grid": {},
       "gridPos": {
         "h": 6,
-        "w": 8,
+        "w": 12,
         "x": 0,
         "y": 14
       },
@@ -642,7 +642,7 @@
       "grid": {},
       "gridPos": {
         "h": 5,
-        "w": 8,
+        "w": 12,
         "x": 0,
         "y": 20
       },
@@ -698,10 +698,12 @@
             "type": "prometheus",
             "uid": "f3dc242d-0b16-48d5-99e9-8f429ee8134b"
           },
-          "expr": "node_filesystem_avail{mountpoint=\"/\", instance=~'$node'}",
+          "editorMode": "code",
+          "expr": "node_filesystem_avail_bytes{mountpoint=\"/\", instance=~'$node'}",
           "format": "time_series",
           "intervalFactor": 5,
           "legendFormat": "Free",
+          "range": true,
           "refId": "A"
         },
         {
@@ -709,10 +711,12 @@
             "type": "prometheus",
             "uid": "f3dc242d-0b16-48d5-99e9-8f429ee8134b"
           },
-          "expr": "node_filesystem_size{mountpoint=\"/\", instance=~'$node'} - node_filesystem_avail{mountpoint=\"/\", instance=~'$node'}",
+          "editorMode": "code",
+          "expr": "node_filesystem_size_bytes{mountpoint=\"/\", instance=~'$node'} - node_filesystem_avail_bytes{mountpoint=\"/\", instance=~'$node'}",
           "format": "time_series",
           "intervalFactor": 5,
           "legendFormat": "Used",
+          "range": true,
           "refId": "D"
         },
         {
@@ -720,11 +724,13 @@
             "type": "prometheus",
             "uid": "f3dc242d-0b16-48d5-99e9-8f429ee8134b"
           },
-          "expr": "predict_linear(node_filesystem_avail{mountpoint=\"/\", instance=~'$node'}[4h], 4 * 3600)",
+          "editorMode": "code",
+          "expr": "predict_linear(node_filesystem_avail_bytes{mountpoint=\"/\", instance=~'$node'}[4h], 4 * 3600)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 10,
           "legendFormat": "Prediction",
+          "range": true,
           "refId": "B"
         }
       ],
@@ -774,13 +780,11 @@
           "selected": true,
           "text": [
             "ct-arm-1",
-            "ct-master-1",
-            "ct-novitus-1"
+            "ct-master-1"
           ],
           "value": [
             "ct-arm-1",
-            "ct-master-1",
-            "ct-novitus-1"
+            "ct-master-1"
           ]
         },
         "datasource": {
@@ -843,6 +847,6 @@
   "timezone": "browser",
   "title": "Node Exporter Server Metrics - Summary",
   "uid": "L10lV1Xik",
-  "version": 87,
+  "version": 135,
   "weekStart": ""
 }
